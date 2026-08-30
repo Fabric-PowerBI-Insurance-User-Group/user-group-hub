@@ -1,0 +1,25 @@
+name: Content or event idea
+description: Suggest a topic, resource, session, or user group improvement.
+title: "[Idea]: "
+labels: ["content", "triage"]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Idea type
+      options: [Monthly meeting, Office hours, Certification cohort, Special event, Resource, Documentation, Volunteer opportunity]
+    validations: {required: true}
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Do not include private contact information or confidential data.
+    validations: {required: true}
+  - type: dropdown
+    id: audience
+    attributes:
+      label: Audience
+      options: [Beginner, Intermediate, Advanced, All levels]
+  - type: textarea
+    id: value
+    attributes: {label: Community value}
