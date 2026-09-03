@@ -2,7 +2,7 @@
 
 ## Monthly User Group Meeting
 
-**Schedule:** First Tuesday evening of each month at **6:00 PM Eastern Time**.  
+**Schedule:** Second Tuesday evening of each month at **5:45 PM Eastern Time**.  
 **Purpose:** Create a predictable flagship experience that builds credibility, return attendance, and reusable knowledge.
 
 Recommended formats include featured talks, live demos, Ask the Expert, panel discussions, hands-on workshops, and user group showcases.

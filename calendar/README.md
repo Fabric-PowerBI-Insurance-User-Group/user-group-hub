@@ -4,7 +4,7 @@
 
 | Program | Date Pattern | Time | Registration |
 |---|---|---|---|
-| Monthly User Group Meeting | First Tuesday of each month | 6:00 PM Eastern Time | [FPBIUG public home](https://community.fabric.microsoft.com/group/FabricandPowerBIInsuranceUserGroup) |
+| Monthly User Group Meeting | Second Tuesday of each month | 5:45 PM Eastern Time | [FPBIUG public home](https://community.fabric.microsoft.com/group/FabricandPowerBIInsuranceUserGroup) |
 | Community Office Hours | Coming Soon | Coming Soon | To be announced |
 | Certification Cohort | Separate time-bound series | Published with each cohort | [FPBIUG public home](https://community.fabric.microsoft.com/group/FabricandPowerBIInsuranceUserGroup) |
 

@@ -2,9 +2,9 @@
 
 ## Collections
 
-- Fabric foundations, OneLake, Lakehouse, Warehouse, pipelines, and notebooks
+- Fabric foundations and workloads (e.g. OneLake, Lakehouse, Warehouse, pipelines, notebooks, real time imtelligence, graph)
 - Power BI modeling, DAX, visualization, storytelling, and performance
-- AI, Copilot, and data-agent experiences
+- AI, Copilot, data-agent, operations agent and ontology experiences
 - Insurance-oriented technology scenarios using safe demonstration data
 - Certification preparation for PL-300, DP-600, and DP-700
 - Speaking, facilitation, career development, and user group leadership

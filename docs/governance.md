@@ -4,8 +4,8 @@
 
 | Co-owner | GitHub | Stewardship Focus |
 |---|---|---|
-| Jennifer Ratten | [@jennratten](https://github.com/jennratten) | Joint stewardship of identity, programming, publishing, and community health |
-| Dean Jurecic | [@djurecic-wiiisdom](https://github.com/djurecic-wiiisdom) | Joint stewardship of identity, programming, publishing, and community health |
+| Jennifer Ratten | [@jennratten](https://github.com/jennratten) | Joint stewardship of identity, programming, publishing, and user group health |
+| Dean Jurecic | [@djurecic-wiiisdom](https://github.com/djurecic-wiiisdom) | Joint stewardship of identity, programming, publishing, and user group health |
 
 ## Operating Principles
 

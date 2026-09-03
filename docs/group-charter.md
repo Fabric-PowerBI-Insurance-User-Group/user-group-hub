@@ -25,7 +25,7 @@ FPBIUG connects insurance professionals and data practitioners who want to learn
 
 ## Program Commitments
 
-- Monthly meetings occur on the **first Tuesday evening** at **6:00 PM Eastern Time**.
+- Monthly meetings occur on the **Second Tuesday evening** at **5:45 PM Eastern Time**.
 - User Group office hours are **Coming Soon**.
 - Certification cohorts will be separate, time-bound series held twice weekly for two to three weeks once launched.
 - Initial certification areas are **PL-300, DP-600, and DP-700**.
