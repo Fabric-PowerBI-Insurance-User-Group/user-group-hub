@@ -1,0 +1,1940 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+  <meta
+    name="description"
+    content="A reusable, source-grounded AI prompt for generating Microsoft certification exam preparation flash cards."
+  >
+
+  <title>
+    Certification Flash Card Prompt | Fabric &amp; Power BI Insurance User Group
+  </title>
+
+  <style>
+    :root {
+      --cream: #f6f7f6;
+      --page-background: #e8eceb;
+      --navy: #001235;
+      --body-blue: #0b1c4a;
+      --footer: #02192f;
+
+      --green: #65c260;
+      --teal: #18a999;
+      --deep-teal: #0e5249;
+      --blue: #2f80c1;
+      --deep-blue: #174a7e;
+      --yellow: #f2c811;
+      --gold: #d68c0a;
+
+      --white: #ffffff;
+      --off-white: #f1f4f6;
+      --pale-blue: #d8e4ef;
+      --muted-blue: #afc0d1;
+      --line: #d7e2df;
+      --ink: #09213d;
+
+      --shadow-sm: 0 8px 22px rgba(0, 18, 53, 0.07);
+      --shadow-md: 0 16px 34px rgba(0, 18, 53, 0.14);
+      --shadow-lg: 0 22px 70px rgba(0, 18, 53, 0.14);
+
+      --page-width: 1120px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--page-background);
+      color: var(--body-blue);
+      font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+      font-size: 16px;
+      line-height: 1.62;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    a {
+      color: #0c5d78;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--deep-teal);
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--green);
+      outline-offset: 3px;
+    }
+
+    .page {
+      max-width: var(--page-width);
+      margin: 0 auto;
+      overflow: hidden;
+      background: var(--cream);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* ========================================================
+       Hero and FPBIUG branding
+       ======================================================== */
+
+    .hero {
+      position: relative;
+      min-height: 610px;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 42px 68px 60px;
+      background:
+        linear-gradient(
+          122deg,
+          var(--navy) 0%,
+          var(--body-blue) 58%,
+          var(--deep-teal) 120%
+        );
+      color: var(--white);
+    }
+
+    .hero::before {
+      position: absolute;
+      top: -140px;
+      right: -150px;
+      z-index: -1;
+      width: 430px;
+      height: 430px;
+      content: "";
+      border-radius: 50%;
+      background:
+        radial-gradient(
+          circle,
+          rgba(101, 194, 96, 0.2),
+          rgba(101, 194, 96, 0)
+        );
+    }
+
+    .hero::after {
+      position: absolute;
+      right: -120px;
+      bottom: -100px;
+      z-index: -1;
+      width: 560px;
+      height: 300px;
+      content: "";
+      border-radius: 50%;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(23, 74, 126, 0.6),
+          rgba(101, 194, 96, 0.1)
+        );
+      transform: rotate(-12deg);
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 58px;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 72px;
+      height: 72px;
+      flex: 0 0 72px;
+      border: 2px solid rgba(255, 255, 255, 0.32);
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--navy);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-name {
+      display: block;
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .brand-community {
+      display: block;
+      margin-top: 4px;
+      color: #bdeaba;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .resource-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .resource-badge::before {
+      width: 9px;
+      height: 9px;
+      content: "";
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(101, 194, 96, 0.16);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: #bdeaba;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 42px;
+      height: 4px;
+      content: "";
+      background: var(--green);
+    }
+
+    h1 {
+      max-width: 870px;
+      margin: 14px 0 20px;
+      color: var(--white);
+      font-size: clamp(44px, 6vw, 76px);
+      font-weight: 760;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-description {
+      max-width: 790px;
+      margin: 0;
+      color: #e9f0f7;
+      font-size: clamp(18px, 2vw, 21px);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .hero-pill {
+      padding: 9px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.27);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* ========================================================
+       Main content
+       ======================================================== */
+
+    main {
+      padding: 62px 68px 74px;
+    }
+
+    section {
+      margin: 0 0 64px;
+      scroll-margin-top: 28px;
+    }
+
+    .section-label {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 6px 0 18px;
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+    }
+
+    h3 {
+      margin: 0 0 9px;
+      color: var(--navy);
+      font-size: 21px;
+      line-height: 1.3;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .section-rule {
+      width: 76px;
+      height: 4px;
+      margin: 18px 0 28px;
+      background: var(--gold);
+    }
+
+    .section-intro {
+      max-width: 830px;
+      color: #465d72;
+      font-size: 18px;
+    }
+
+    .purpose-panel {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+      padding: 30px;
+      background:
+        linear-gradient(
+          135deg,
+          #e6f2ed,
+          var(--white)
+        );
+      border-left: 6px solid var(--green);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .purpose-icon {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--deep-teal);
+      color: var(--white);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .purpose-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    .inline-pill {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: #dcefe9;
+      color: var(--deep-teal);
+      font-size: 0.92em;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* ========================================================
+       Cards
+       ======================================================== */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 26px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--green);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card:nth-child(2) {
+      border-top-color: var(--blue);
+    }
+
+    .card:nth-child(3) {
+      border-top-color: var(--gold);
+    }
+
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 17px;
+      border-radius: 50%;
+      background: #e9f3f0;
+      color: var(--deep-teal);
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .card:nth-child(2) .card-icon {
+      background: #e8f1f8;
+      color: var(--deep-blue);
+    }
+
+    .card:nth-child(3) .card-icon {
+      background: #fff5d3;
+      color: #806300;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      color: #526778;
+      font-size: 14px;
+    }
+
+    /* ========================================================
+       Steps
+       ======================================================== */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      counter-reset: prompt-step;
+      list-style: none;
+    }
+
+    .steps li {
+      position: relative;
+      min-height: 220px;
+      padding: 24px 20px;
+      counter-increment: prompt-step;
+      background: #ebf3f0;
+      border-bottom: 4px solid var(--deep-teal);
+    }
+
+    .steps li::before {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 16px;
+      content: counter(prompt-step);
+      border-radius: 50%;
+      background: var(--deep-teal);
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    .steps strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--navy);
+    }
+
+    /* ========================================================
+       Prompt
+       ======================================================== */
+
+    .prompt-section {
+      margin-right: -68px;
+      margin-left: -68px;
+      padding: 48px 68px;
+      background: var(--navy);
+      border-top: 5px solid var(--green);
+      border-bottom: 5px solid var(--gold);
+      color: #dfeaf5;
+    }
+
+    .prompt-section .section-label {
+      color: var(--green);
+    }
+
+    .prompt-section h2 {
+      color: var(--white);
+    }
+
+    .prompt-section .section-intro {
+      color: #d6e4f0;
+    }
+
+    .prompt-wrap {
+      overflow: hidden;
+      background: #061a32;
+      border-top: 5px solid var(--green);
+      box-shadow: var(--shadow-md);
+    }
+
+    .prompt-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 20px 22px;
+      color: var(--white);
+    }
+
+    .prompt-title {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+    }
+
+    .prompt-title::before {
+      width: 11px;
+      height: 11px;
+      content: "";
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(101, 194, 96, 0.12);
+    }
+
+    .copy-button {
+      min-width: 112px;
+      padding: 11px 16px;
+      border: 0;
+      border-radius: 4px;
+      background: var(--gold);
+      color: #07162d;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .copy-button:hover {
+      background: var(--yellow);
+    }
+
+    pre {
+      max-height: 720px;
+      margin: 0;
+      padding: 24px;
+      overflow: auto;
+      background: #f9fbfa;
+      border: 1px solid #b6c9c3;
+      color: var(--ink);
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+      font-size: 13px;
+      line-height: 1.58;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      tab-size: 2;
+    }
+
+    pre code {
+      font: inherit;
+      color: inherit;
+    }
+
+    code:not(pre code) {
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #edf2f2;
+      color: var(--ink);
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+      font-size: 0.9em;
+    }
+
+    .prompt-notice {
+      margin: 12px 0 0;
+      color: #cfe0ef;
+      font-size: 13px;
+    }
+
+    .screen-reader-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    /* ========================================================
+       Adaptation guidance
+       ======================================================== */
+
+    .adapt-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(270px, 0.7fr);
+      gap: 24px;
+    }
+
+    .guidance-panel,
+    .exam-panel {
+      padding: 28px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .guidance-panel {
+      border-left: 6px solid var(--green);
+    }
+
+    .exam-panel {
+      border-top: 5px solid var(--blue);
+    }
+
+    .check-list,
+    .exam-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .check-list li {
+      position: relative;
+      margin-bottom: 14px;
+      padding-left: 33px;
+    }
+
+    .check-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .check-list li::before {
+      position: absolute;
+      top: 1px;
+      left: 0;
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 22px;
+      content: "✓";
+      border-radius: 50%;
+      background: #dff0e5;
+      color: var(--deep-teal);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .exam-list li {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      color: #526778;
+      font-size: 14px;
+    }
+
+    .exam-list li:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .exam-list strong {
+      color: var(--navy);
+    }
+
+    /* ========================================================
+       Insurance section
+       ======================================================== */
+
+    .insurance-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 42px;
+      background:
+        linear-gradient(
+          122deg,
+          var(--navy),
+          var(--body-blue) 65%,
+          var(--deep-teal)
+        );
+      border-top: 5px solid var(--green);
+      border-bottom: 5px solid var(--gold);
+      color: #dfeaf5;
+    }
+
+    .insurance-panel::after {
+      position: absolute;
+      top: -120px;
+      right: -110px;
+      width: 250px;
+      height: 250px;
+      content: "";
+      border-radius: 50%;
+      background: rgba(23, 74, 126, 0.5);
+    }
+
+    .insurance-panel h2,
+    .insurance-panel h3 {
+      position: relative;
+      z-index: 1;
+      color: var(--white);
+    }
+
+    .insurance-panel .section-label {
+      position: relative;
+      z-index: 1;
+      color: var(--green);
+    }
+
+    .insurance-panel .section-intro {
+      position: relative;
+      z-index: 1;
+      color: #d7e4ee;
+    }
+
+    .insurance-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .insurance-item {
+      padding: 21px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .insurance-item p {
+      margin: 0;
+      color: #cddcea;
+      font-size: 14px;
+    }
+
+    /* ========================================================
+       FAQ
+       ======================================================== */
+
+    .faq-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    details {
+      padding: 18px 20px;
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--navy);
+      font-weight: 800;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      content: "+";
+      border-radius: 50%;
+      background: #e5f1ed;
+      color: var(--deep-teal);
+      font-size: 20px;
+      line-height: 1;
+      transition: transform 0.18s ease;
+    }
+
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      padding-top: 14px;
+      color: #526778;
+      font-size: 14px;
+    }
+
+    .faq-answer p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ========================================================
+       AI disclosure
+       ======================================================== */
+
+    .ai-disclosure {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 18px;
+      margin-top: 30px;
+      padding: 24px;
+      background: #fff8db;
+      border-left: 6px solid var(--gold);
+      color: #55460c;
+    }
+
+    .ai-icon {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--yellow);
+      color: var(--navy);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .ai-disclosure strong {
+      color: #423600;
+    }
+
+    .ai-disclosure p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ========================================================
+       Footer
+       ======================================================== */
+
+    footer {
+      padding: 50px 68px 34px;
+      background: var(--footer);
+      color: var(--pale-blue);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 130px minmax(0, 1fr);
+      gap: 30px;
+      align-items: center;
+    }
+
+    .footer-badge {
+      display: grid;
+      place-items: center;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--navy);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.38);
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    footer h2 {
+      margin: 0 0 10px;
+      color: var(--green);
+      font-size: clamp(28px, 4vw, 42px);
+    }
+
+    .footer-conversation {
+      margin: 0;
+      color: var(--off-white);
+      font-size: 17px;
+    }
+
+    .brand-values {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 9px;
+      margin-top: 20px;
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .brand-values .learn {
+      color: var(--teal);
+    }
+
+    .brand-values .connect {
+      color: var(--blue);
+    }
+
+    .brand-values .grow {
+      color: var(--yellow);
+    }
+
+    .brand-values .dot {
+      color: var(--white);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-top: 24px;
+    }
+
+    .footer-links a {
+      color: var(--white);
+      font-weight: 800;
+    }
+
+    .footer-links a:hover {
+      color: var(--green);
+    }
+
+    .footer-fine-print {
+      margin-top: 30px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--muted-blue);
+      font-size: 13px;
+    }
+
+    .footer-fine-print p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ========================================================
+       Responsive styling
+       ======================================================== */
+
+    @media (max-width: 940px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .steps li:last-child {
+        grid-column: 1 / -1;
+        min-height: auto;
+      }
+
+      .adapt-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero,
+      main,
+      footer {
+        padding-right: 26px;
+        padding-left: 26px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .brand-row {
+        align-items: flex-start;
+        margin-bottom: 48px;
+      }
+
+      .resource-badge {
+        display: none;
+      }
+
+      .brand-mark {
+        width: 60px;
+        height: 60px;
+        flex-basis: 60px;
+        font-size: 13px;
+      }
+
+      .brand-name {
+        font-size: 15px;
+      }
+
+      .purpose-panel,
+      .ai-disclosure {
+        grid-template-columns: 1fr;
+      }
+
+      .prompt-section {
+        margin-right: -26px;
+        margin-left: -26px;
+        padding-right: 26px;
+        padding-left: 26px;
+      }
+
+      .insurance-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-badge {
+        width: 105px;
+        height: 105px;
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .steps li,
+      .steps li:last-child {
+        grid-column: auto;
+        min-height: auto;
+      }
+
+      .prompt-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .copy-button {
+        width: 100%;
+      }
+
+      pre {
+        padding: 18px;
+        font-size: 12px;
+      }
+
+      .insurance-panel {
+        padding: 30px 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+
+    @media print {
+      body {
+        background: var(--white);
+      }
+
+      .page {
+        max-width: none;
+        box-shadow: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .copy-button {
+        display: none;
+      }
+
+      pre {
+        max-height: none;
+        overflow: visible;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      details {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <header class="hero">
+
+      <div class="brand-row">
+        <div class="brand-lockup">
+          <div
+            class="brand-mark"
+            aria-hidden="true"
+          >
+            FPBIUG
+          </div>
+
+          <div class="brand-copy">
+            <span class="brand-name">
+              Fabric &amp; Power BI Insurance User Group
+            </span>
+
+            <span class="brand-community">
+              A global community for insurance data professionals
+            </span>
+          </div>
+        </div>
+
+        <div class="resource-badge">
+          Community Learning Resource
+        </div>
+      </div>
+
+      <div class="eyebrow">
+        Reusable AI prompt
+      </div>
+
+      <h1>
+        Generate Certification Exam Prep Flash Cards
+      </h1>
+
+      <p class="hero-description">
+        Transform approved learning content into practical, source-grounded
+        flash cards for individual study, FPBIUG certification study groups,
+        and technical learning sessions.
+      </p>
+
+      <div
+        class="hero-meta"
+        aria-label="Resource topics"
+      >
+        <span class="hero-pill">Microsoft Fabric</span>
+        <span class="hero-pill">Power BI</span>
+        <span class="hero-pill">Certification Prep</span>
+        <span class="hero-pill">Insurance Analytics</span>
+      </div>
+
+    </header>
+
+    <main>
+
+      <section aria-labelledby="purpose-heading">
+        <div class="section-label">Purpose</div>
+
+        <h2 id="purpose-heading">
+          Turn learning content into focused study material
+        </h2>
+
+        <div class="section-rule"></div>
+
+        <div class="purpose-panel">
+          <div
+            class="purpose-icon"
+            aria-hidden="true"
+          >
+            ◆
+          </div>
+
+          <div>
+            <p>
+              This reusable prompt helps learners generate certification exam
+              preparation flash cards from an approved knowledge source. It
+              directs an AI assistant to identify exam-relevant concepts and
+              turn them into concise, source-grounded question-and-answer
+              pairs.
+            </p>
+
+            <p>
+              The prompt uses
+              <span class="inline-pill">[certification]</span>
+              as a visible placeholder so it can be quickly customized for
+              DP-700, DP-600, PL-300, AI-102, PL-400, or another exam.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="uses-heading">
+        <div class="section-label">Learning applications</div>
+
+        <h2 id="uses-heading">
+          Ways FPBIUG members can use this framework
+        </h2>
+
+        <div class="section-rule"></div>
+
+        <p class="section-intro">
+          Use the prompt as a starting point for individual learning,
+          certification study groups, technical workshops, and community
+          knowledge checks.
+        </p>
+
+        <div class="card-grid">
+
+          <article class="card">
+            <div
+              class="card-icon"
+              aria-hidden="true"
+            >
+              ◎
+            </div>
+
+            <h3>Certification study</h3>
+
+            <p>
+              Generate focused flash cards from Microsoft Learn modules,
+              certification study materials, Markdown files, or product
+              documentation.
+            </p>
+          </article>
+
+          <article class="card">
+            <div
+              class="card-icon"
+              aria-hidden="true"
+            >
+              ▥
+            </div>
+
+            <h3>Community study groups</h3>
+
+            <p>
+              Develop structured knowledge checks for FPBIUG certification
+              sessions, workshops, learning challenges, and review events.
+            </p>
+          </article>
+
+          <article class="card">
+            <div
+              class="card-icon"
+              aria-hidden="true"
+            >
+              ◇
+            </div>
+
+            <h3>Insurance learning scenarios</h3>
+
+            <p>
+              Reinforce Fabric, Power BI, and AI concepts with clearly
+              separated examples drawn from insurance data and analytics.
+            </p>
+          </article>
+
+        </div>
+      </section>
+
+      <section aria-labelledby="steps-heading">
+        <div class="section-label">Getting started</div>
+
+        <h2 id="steps-heading">
+          Use the prompt in five steps
+        </h2>
+
+        <div class="section-rule"></div>
+
+        <ol class="steps">
+          <li>
+            <strong>Choose the certification.</strong>
+            Replace <code>[certification]</code> with the applicable exam
+            code and name.
+          </li>
+
+          <li>
+            <strong>Select the source.</strong>
+            Choose approved learning modules, Markdown documents, or product
+            documentation.
+          </li>
+
+          <li>
+            <strong>Customize the request.</strong>
+            Update the card count, difficulty, topics, and desired question
+            types.
+          </li>
+
+          <li>
+            <strong>Generate and validate.</strong>
+            Ensure every answer and explanation is supported by the supplied
+            source.
+          </li>
+
+          <li>
+            <strong>Use the study set.</strong>
+            Add the cards to a study group, workshop, quiz, or
+            spaced-repetition tool.
+          </li>
+        </ol>
+      </section>
+
+      <section
+        class="prompt-section"
+        aria-labelledby="prompt-heading"
+      >
+        <div class="section-label">Copy and customize</div>
+
+        <h2 id="prompt-heading">
+          Reusable certification flash card prompt
+        </h2>
+
+        <p class="section-intro">
+          The certification placeholder appears first so it can be located and
+          updated immediately.
+        </p>
+
+        <div class="prompt-wrap">
+
+          <div class="prompt-toolbar">
+            <div class="prompt-title">
+              Certification flash card prompt
+            </div>
+
+            <button
+              class="copy-button"
+              id="copyButton"
+              type="button"
+              aria-describedby="copyStatus"
+            >
+              Copy prompt
+            </button>
+          </div>
+
+          <pre id="promptText"><code>[certification]: Replace this placeholder with the certification exam code and name.
+
+KNOWLEDGE SOURCE LOCATION
+
+Replace this instruction with the location of the approved learning content, Markdown files, documentation repository, or knowledge source.
+
+ROLE
+
+You are an assistant designed to help people learn from tutorials and approved technical learning content.
+
+OBJECTIVE
+
+Use the documents in the specified knowledge source location to create question-and-answer pairs that help a learner prepare for the [certification] exam.
+
+GROUNDING REQUIREMENTS
+
+- Base every question, answer, answer option, explanation, and source reference on the supplied source material.
+- Do not add unsupported product details, procedures, limitations, or recommendations.
+- Do not use outside knowledge unless the user explicitly authorizes it.
+- If the source does not contain enough information to create the requested number of distinct flash cards, state that limitation instead of inventing content.
+- Do not reproduce or claim to reproduce live, confidential, recalled, or proprietary certification exam questions.
+- Write original practice questions based on the concepts contained in the approved source material.
+
+FLASH CARD REQUIREMENTS
+
+- Create at least 5 distinct flash cards.
+- Use a balanced blend of:
+  - Multiple Choice
+  - True/False
+  - Fill in the Blank
+- Make the questions similar in style and difficulty to appropriate [certification] practice questions.
+- Avoid duplicate or substantially similar questions.
+- Use clear and concise language.
+- Keep each question focused on one primary concept.
+
+MULTIPLE-CHOICE REQUIREMENTS
+
+- Include one correct answer.
+- Include three plausible incorrect options when the source supports meaningful alternatives.
+- Do not use trick wording.
+- Do not use "all of the above" or "none of the above."
+
+TRUE/FALSE REQUIREMENTS
+
+- Avoid statements that are ambiguous, subjective, or only partially true.
+- Make the expected answer directly supportable from the source.
+
+FILL-IN-THE-BLANK REQUIREMENTS
+
+- Ensure the expected answer can be determined from the source.
+- Avoid blanks that can reasonably have multiple correct answers.
+
+CONTENT PRIORITIES
+
+When supported by the source material, focus on:
+
+- Key concepts
+- Definitions
+- Product features
+- Monitoring capabilities
+- Recommended practices
+- Product limitations
+- Configuration considerations
+- Architecture decisions
+- Troubleshooting considerations
+- Security and governance
+- Exam-relevant technical details
+
+OUTPUT FORMAT
+
+Begin with this summary:
+
+Certification Exam:
+[certification]
+
+Flash Cards Created:
+&lt;number of flash cards&gt;
+
+Knowledge Source:
+&lt;knowledge source location&gt;
+
+Then use the following structure for every flash card:
+
+---
+
+Flash Card &lt;number&gt;
+
+Question Type:
+&lt;Multiple Choice, True/False, or Fill in the Blank&gt;
+
+Topic:
+&lt;topic or learning objective&gt;
+
+Difficulty:
+&lt;Foundational, Intermediate, or Advanced&gt;
+
+Question:
+&lt;question text&gt;
+
+Answer Options:
+A. &lt;option&gt;
+B. &lt;option&gt;
+C. &lt;option&gt;
+D. &lt;option&gt;
+
+Omit the Answer Options section when it does not apply.
+
+Correct Answer:
+&lt;correct answer&gt;
+
+Explanation:
+&lt;brief explanation based only on the source material&gt;
+
+Source Reference:
+&lt;document name, section, heading, or file path&gt;
+
+---
+
+SOURCE VALIDATION SUMMARY
+
+After the final flash card, include:
+
+- The source files or sections used
+- Any source limitations
+- Any requested topics that could not be covered
+- A statement confirming whether outside knowledge was used
+- A statement confirming that the questions are original practice questions and not recalled or proprietary exam content
+
+FINAL QUALITY CHECK
+
+Before completing the response:
+
+- Confirm the requested number of flash cards was created.
+- Confirm the set includes the requested mix of question types.
+- Confirm each answer is supported by the source.
+- Confirm each explanation is consistent with its answer.
+- Confirm multiple-choice questions contain only one correct answer.
+- Confirm the questions are distinct and not substantially duplicated.
+- Confirm source references are as specific as the available content allows.
+- Clearly identify any information that could not be validated from the source.</code></pre>
+
+          <p
+            class="prompt-notice"
+            id="copyStatus"
+            role="status"
+            aria-live="polite"
+          >
+            Replace [certification] and the knowledge source location before
+            using the prompt.
+          </p>
+
+        </div>
+      </section>
+
+      <section aria-labelledby="adapt-heading">
+        <div class="section-label">Reuse the framework</div>
+
+        <h2 id="adapt-heading">
+          Adapt the prompt for another certification
+        </h2>
+
+        <div class="section-rule"></div>
+
+        <p class="section-intro">
+          Update the certification-specific inputs while preserving the
+          grounding, source-validation, and quality-control requirements.
+        </p>
+
+        <div class="adapt-grid">
+
+          <div class="guidance-panel">
+            <h3>Recommended modifications</h3>
+
+            <ul class="check-list">
+              <li>
+                Replace every instance of
+                <code>[certification]</code>
+                with the exam code and official exam name.
+              </li>
+
+              <li>
+                Replace the knowledge source instruction with the applicable
+                Microsoft Learn module, documentation repository, or approved
+                learning source.
+              </li>
+
+              <li>
+                Change the minimum flash card count to 10, 25, 50, or another
+                appropriate study-set size.
+              </li>
+
+              <li>
+                Adjust the difficulty distribution for foundational,
+                intermediate, advanced, or mixed-level study.
+              </li>
+
+              <li>
+                Request scenario-based questions when the certification tests
+                architecture, implementation, administration, or
+                troubleshooting decisions.
+              </li>
+
+              <li>
+                Organize large card sets by skill area, learning objective,
+                module, or documentation section.
+              </li>
+
+              <li>
+                Preserve the source-grounding and validation requirements.
+              </li>
+            </ul>
+          </div>
+
+          <aside
+            class="exam-panel"
+            aria-labelledby="examples-heading"
+          >
+            <h3 id="examples-heading">
+              Example certifications
+            </h3>
+
+            <ul class="exam-list">
+              <li>
+                <strong>DP-700</strong>
+                <span>Fabric Data Engineer Associate</span>
+              </li>
+
+              <li>
+                <strong>DP-600</strong>
+                <span>Fabric Analytics Engineer Associate</span>
+              </li>
+
+              <li>
+                <strong>PL-300</strong>
+                <span>Power BI Data Analyst Associate</span>
+              </li>
+
+              <li>
+                <strong>AI-102</strong>
+                <span>Azure AI Engineer Associate</span>
+              </li>
+
+              <li>
+                <strong>PL-400</strong>
+                <span>Power Platform Developer Associate</span>
+              </li>
+            </ul>
+          </aside>
+
+        </div>
+      </section>
+
+      <section
+        class="insurance-panel"
+        aria-labelledby="insurance-heading"
+      >
+        <div class="section-label">Insurance context</div>
+
+        <h2 id="insurance-heading">
+          Extend the learning experience with insurance scenarios
+        </h2>
+
+        <p class="section-intro">
+          Ask the AI to provide a separate insurance example after the
+          source-grounded explanation. The example should reinforce the
+          technical concept without changing the official answer or
+          introducing unsupported product guidance.
+        </p>
+
+        <div class="insurance-grid">
+
+          <article class="insurance-item">
+            <h3>Claims analytics</h3>
+
+            <p>
+              Illustrate monitoring, data quality, reporting, or anomaly
+              detection concepts using claims-processing data.
+            </p>
+          </article>
+
+          <article class="insurance-item">
+            <h3>Enrollment and eligibility</h3>
+
+            <p>
+              Connect ingestion, reconciliation, modeling, and refresh
+              concepts to member enrollment workflows.
+            </p>
+          </article>
+
+          <article class="insurance-item">
+            <h3>Policy and benefits data</h3>
+
+            <p>
+              Apply semantic modeling, document processing, and analytics
+              concepts to policies, plans, and benefit structures.
+            </p>
+          </article>
+
+          <article class="insurance-item">
+            <h3>Governance and security</h3>
+
+            <p>
+              Relate access control, lineage, auditing, and governance
+              concepts to sensitive insurance information.
+            </p>
+          </article>
+
+        </div>
+      </section>
+
+      <section aria-labelledby="faq-heading">
+        <div class="section-label">Frequently asked questions</div>
+
+        <h2 id="faq-heading">
+          Using the prompt responsibly
+        </h2>
+
+        <div class="section-rule"></div>
+
+        <div class="faq-list">
+
+          <details>
+            <summary>
+              Should generated questions use information outside the source?
+            </summary>
+
+            <div class="faq-answer">
+              <p>
+                No. The prompt directs the AI to base each question, answer,
+                option, explanation, and reference on the supplied content.
+                Review the generated study set before using or publishing it.
+              </p>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Does the prompt generate actual certification exam questions?
+            </summary>
+
+            <div class="faq-answer">
+              <p>
+                No. It requests original practice questions based on approved
+                source material. It does not request or claim to reproduce
+                live, confidential, recalled, or proprietary exam content.
+              </p>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Can FPBIUG use the cards in a certification study group?
+            </summary>
+
+            <div class="faq-answer">
+              <p>
+                Yes. The cards can be organized by skill area or topic and
+                used for facilitated reviews, knowledge checks, discussion
+                activities, or individual study.
+              </p>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              Can insurance examples be included?
+            </summary>
+
+            <div class="faq-answer">
+              <p>
+                Yes. Keep each insurance example clearly separated from the
+                source-grounded answer so that it supports learning without
+                changing the correct technical response.
+              </p>
+            </div>
+          </details>
+
+        </div>
+
+        <aside
+          class="ai-disclosure"
+          aria-label="AI-assisted content disclosure"
+        >
+          <div
+            class="ai-icon"
+            aria-hidden="true"
+          >
+            ✦
+          </div>
+
+          <div>
+            <p>
+              <strong>AI-assisted content:</strong>
+              AI assisted in creating and formatting this learning resource.
+              A knowledgeable reviewer should validate the prompt, generated
+              flash cards, answers, explanations, and source references before
+              the material is published or used for certification preparation.
+            </p>
+
+            <p>
+              Generated flash cards are supplemental study aids. They do not
+              replace current official learning content, certification study
+              guides, hands-on practice, or official exam guidance.
+            </p>
+          </div>
+        </aside>
+
+      </section>
+
+    </main>
+
+    <footer>
+
+      <div class="footer-grid">
+
+        <div
+          class="footer-badge"
+          aria-label="FPBIUG"
+        >
+          FPBIUG
+        </div>
+
+        <div>
+          <h2>
+            Continue the conversation
+          </h2>
+
+          <p class="footer-conversation">
+            Connect with insurance professionals exploring Microsoft Fabric,
+            Power BI, data, analytics, and AI.
+          </p>
+
+          <div
+            class="brand-values"
+            aria-label="Learn, Connect, Grow"
+          >
+            <span class="learn">LEARN</span>
+            <span class="dot" aria-hidden="true">•</span>
+            <span class="connect">CONNECT</span>
+            <span class="dot" aria-hidden="true">•</span>
+            <span class="grow">GROW</span>
+          </div>
+
+          <nav
+            class="footer-links"
+            aria-label="FPBIUG community links"
+          >
+            <a
+              href="https://github.com/Fabric-PowerBI-Insurance-User-Group/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="https://github.com/Fabric-PowerBI-Insurance-User-Group/"
+            >
+              Fabric &amp; PowerBI Insurance User Group on GitHub
+            </a>
+          </nav>
+        </div>
+
+      </div>
+
+      <div class="footer-fine-print">
+        <p>
+          Fabric &amp; Power BI Insurance User Group · FPBIUG
+        </p>
+
+        <p>
+          AI assisted in creating this content. Review and validate all
+          generated learning materials before use.
+        </p>
+      </div>
+
+    </footer>
+
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const copyButton = document.getElementById("copyButton");
+      const promptText = document.getElementById("promptText");
+      const copyStatus = document.getElementById("copyStatus");
+
+      if (!copyButton || !promptText || !copyStatus) {
+        return;
+      }
+
+      const originalButtonText = copyButton.textContent.trim();
+      const originalStatusText = copyStatus.textContent.trim();
+
+      let resetTimerId = null;
+
+      function resetCopyInterface() {
+        copyButton.textContent = originalButtonText;
+        copyStatus.textContent = originalStatusText;
+        resetTimerId = null;
+      }
+
+      function updateCopyInterface(buttonText, statusText) {
+        copyButton.textContent = buttonText;
+        copyStatus.textContent = statusText;
+
+        if (resetTimerId !== null) {
+          window.clearTimeout(resetTimerId);
+        }
+
+        resetTimerId = window.setTimeout(
+          resetCopyInterface,
+          2400
+        );
+      }
+
+      function copyWithFallback(text) {
+        const textArea = document.createElement("textarea");
+
+        textArea.value = text;
+        textArea.setAttribute("readonly", "");
+        textArea.setAttribute("aria-hidden", "true");
+
+        textArea.style.position = "fixed";
+        textArea.style.top = "0";
+        textArea.style.left = "-9999px";
+        textArea.style.width = "1px";
+        textArea.style.height = "1px";
+        textArea.style.opacity = "0";
+
+        document.body.appendChild(textArea);
+
+        textArea.focus();
+        textArea.select();
+        textArea.setSelectionRange(
+          0,
+          textArea.value.length
+        );
+
+        let copySucceeded = false;
+
+        try {
+          copySucceeded = document.execCommand("copy");
+        } catch (error) {
+          copySucceeded = false;
+        }
+
+        document.body.removeChild(textArea);
+
+        if (copySucceeded) {
+          updateCopyInterface(
+            "Copied!",
+            "The certification flash card prompt was copied."
+          );
+        } else {
+          updateCopyInterface(
+            "Select text",
+            "Automatic copying was unavailable. Select the prompt text and copy it manually."
+          );
+        }
+      }
+
+      copyButton.addEventListener("click", function () {
+        const textToCopy = promptText.textContent.trim();
+
+        if (!textToCopy) {
+          updateCopyInterface(
+            "No text",
+            "There is no prompt text available to copy."
+          );
+          return;
+        }
+
+        if (
+          navigator.clipboard &&
+          typeof navigator.clipboard.writeText === "function" &&
+          window.isSecureContext
+        ) {
+          navigator.clipboard
+            .writeText(textToCopy)
+            .then(function () {
+              updateCopyInterface(
+                "Copied!",
+                "The certification flash card prompt was copied."
+              );
+            })
+            .catch(function () {
+              copyWithFallback(textToCopy);
+            });
+
+          return;
+        }
+
+        copyWithFallback(textToCopy);
+      });
+    }());
+  </script>
+
+</body>
+</html>
